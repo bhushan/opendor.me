@@ -24,13 +24,16 @@ services:
     image: postgres:13
     restart: unless-stopped
     environment:
+      PGPORT: ${DB_PORT:-5432}
       POSTGRES_DB: ${DB_DATABASE}
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - psql:/var/lib/postgresql/data
+    expose:
+      - "${DB_PORT:-5432}"
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "${DB_PORT:-5432}:${DB_PORT:-5432}"
     networks:
       - opendor
 
