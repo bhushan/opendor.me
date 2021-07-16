@@ -30,8 +30,6 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - psql:/var/lib/postgresql/data
-    expose:
-      - "${DB_PORT:-5432}"
     ports:
       - "${DB_PORT:-5432}:${DB_PORT:-5432}"
     networks:
@@ -56,8 +54,6 @@ services:
     container_name: opendorme_redis
     image: "redis:alpine"
     command: "--port ${REDIS_PORT:-6379}"
-    expose:
-      - "${REDIS_PORT:-6379}"
     ports:
       - "${REDIS_PORT:-6379}:${REDIS_PORT:-6379}"
     volumes:
